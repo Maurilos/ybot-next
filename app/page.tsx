@@ -9,7 +9,7 @@ import {
   Surface,
   Tag,
 } from "@/components/site-primitives";
-import { heroMetrics, homePillars, siteProfile, timeline } from "@/content/site";
+import { heroMetrics, homePillars, siteProfile } from "@/content/site";
 import {
   getContentSnapshot,
   getFeaturedPost,
@@ -85,23 +85,6 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-y border-black/8 bg-white/42 py-20 md:py-24">
-        <Container>
-          <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
-            <SectionHeading
-              eyebrow="Architecture Snapshot"
-              title="现在先把模板系统做对。"
-              description={`当前内容全部是占位数据，只用于验证结构是否顺手：博客 ${snapshot.postCount} 篇、工具模块 ${snapshot.toolCount} 个、项目卡位 ${snapshot.projectCount} 个。`}
-            />
-            <div className="flex flex-wrap gap-3 lg:justify-end">
-              <Tag>Architecture First</Tag>
-              <Tag>Editorial Layout</Tag>
-              <Tag>{siteProfile.owner.location}</Tag>
-            </div>
-          </div>
-        </Container>
-      </section>
-
       <section className="border-b border-black/8 bg-white/42 py-20 md:py-24">
         <Container>
           <SectionHeading
@@ -165,73 +148,28 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="py-20 md:py-24">
-        <Container className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <Surface className="p-8 md:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">
-              About The Build
-            </p>
-            <h2 className="font-display mt-4 text-4xl tracking-[-0.04em] text-[var(--color-foreground)] md:text-5xl">
-              先做一套能长期承载内容的母版，再谈接入什么。
-            </h2>
-            <div className="mt-8 space-y-5">
-              {siteProfile.aboutLines.slice(0, 3).map((line) => (
-                <div key={line} className="rounded-[22px] border border-black/8 bg-black/[0.025] p-5">
-                  <p className="text-sm leading-7 text-[var(--color-foreground)]/82 md:text-base md:leading-8">
-                    {line}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Surface>
-
-          <Surface className="p-8 md:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">
-              Rollout Path
-            </p>
-            <div className="mt-8 space-y-8">
-              {timeline.map((item) => (
-                <div
-                  key={item.year}
-                  className="grid gap-4 border-t border-black/8 pt-8 md:grid-cols-[110px_1fr] md:gap-8 first:border-t-0 first:pt-0"
-                >
-                  <div className="font-display text-4xl tracking-[-0.05em] text-[var(--color-accent-strong)]">
-                    {item.year}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold tracking-[-0.03em] text-[var(--color-foreground)]">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-[var(--color-muted)] md:text-base md:leading-8">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Surface>
-        </Container>
-      </section>
-
-      <section className="pb-20 md:pb-24">
+      <section className="py-16 md:py-20">
         <Container>
-          <div className="rounded-[36px] border border-black/8 bg-[var(--color-ink)] px-7 py-10 text-white shadow-[0_26px_90px_rgba(3,7,18,0.22)] md:px-10 md:py-14">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/44">Template Status</p>
+          <Surface className="p-8 md:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">
+              YBOT 2.0
+            </p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
-                <h2 className="font-display text-4xl tracking-[-0.05em] md:text-5xl">
-                  现在这站先别背旧内容，先把门面、层级和结构打磨到顺眼。
+                <h2 className="font-display text-4xl tracking-[-0.05em] text-[var(--color-foreground)] md:text-5xl">
+                  首页先收束到 5 个核心区块，其他说明压成一段就够了。
                 </h2>
-                <p className="mt-4 max-w-3xl text-base leading-8 text-white/68">
-                  等你确认这套骨架没问题，再把真实文章、工具或项目慢慢换进来，成本会低很多。
+                <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--color-muted)]">
+                  这样首页会更利落，信息密度也更像成熟站点。后面你只需要在这套骨架上继续填内容，不用再反复改版式。
                 </p>
               </div>
-              <div className="flex flex-wrap gap-4">
-                <PrimaryLink href="/projects">看项目模板</PrimaryLink>
-                <SecondaryLink href="/tools">看工具模板</SecondaryLink>
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <Tag>Cleaner Home</Tag>
+                <Tag>Editorial Flow</Tag>
+                <Tag>{siteProfile.owner.location}</Tag>
               </div>
             </div>
-          </div>
+          </Surface>
         </Container>
       </section>
     </>
