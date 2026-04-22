@@ -30,7 +30,7 @@ export default function Home() {
       <PageHero
         eyebrow={siteProfile.title}
         title={siteProfile.heroTagline}
-        description={`${siteProfile.description} 现在已经把 ${snapshot.postCount} 篇示例文章、${snapshot.toolCount} 个工具模块和 ${snapshot.projectCount} 个项目展示位接进这套模板里，用来验证整站节奏。`}
+        description={`${siteProfile.description} 现在先用 ${snapshot.postCount} 篇示例文章、${snapshot.toolCount} 个工具模块和 ${snapshot.projectCount} 个项目位，把首页节奏和整站气质打磨顺。`}
         actions={
           <>
             <PrimaryLink href="/blog">看博客模板</PrimaryLink>
@@ -57,12 +57,12 @@ export default function Home() {
         }
       />
 
-      <section className="py-20 md:py-24">
+      <section className="py-16 md:py-20">
         <Container>
           <SectionHeading
             eyebrow="Site Layers"
-            title="整站骨架已经立起来了。"
-            description="这版先不碰旧数据，只把首页、内容页、工具页和项目页做成同一套成熟前台。"
+            title="先看这座站的三条主线。"
+            description="首页先承担品牌入口和导航职责，把博客、工具和项目三条线清楚摆出来。"
           />
           <div className="grid gap-6 lg:grid-cols-3">
             {homePillars.map((pillar) => (
@@ -85,12 +85,12 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-b border-black/8 bg-white/42 py-20 md:py-24">
+      <section className="border-b border-black/8 bg-white/42 py-16 md:py-20">
         <Container>
           <SectionHeading
             eyebrow="Featured Writing"
-            title="博客页先用示例文章把阅读路径跑通。"
-            description="列表卡片、主打文章、分类模块和详情页节奏都已经具备，后面直接替换成真实内容就行。"
+            title="最新文章"
+            description="先让列表页和详情页的阅读感成立，后面再慢慢替换成真实内容。"
             action={<InlineLink href="/blog">查看博客页 →</InlineLink>}
           />
           {featuredPost ? (
@@ -106,12 +106,12 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="py-20 md:py-24">
+      <section className="py-16 md:py-20">
         <Container>
           <SectionHeading
             eyebrow="Project Presence"
-            title="项目页负责把站点的气场拉起来。"
-            description="这里先用占位项目卡去定义陈列方式、层级关系和未来的扩展空间。"
+            title="项目精选"
+            description="这里先把陈列方式和层级关系做好，让项目区看起来像作品展示，而不是链接堆叠。"
             action={<InlineLink href="/projects">看项目页 →</InlineLink>}
           />
           <div className="grid gap-6 lg:grid-cols-3">
@@ -122,12 +122,12 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-y border-black/8 bg-[var(--color-ink)] py-20 text-white md:py-24">
+      <section className="border-y border-black/8 bg-[var(--color-ink)] py-16 text-white md:py-20">
         <Container>
           <SectionHeading
             eyebrow="Tool Modules"
-            title="工具页先做成一个更像工作台的模块层。"
-            description="当真实资源还没进来时，这一页先承接方法、模块、系统说明，站点也不会显得空。"
+            title="工具区"
+            description="在真实资源还没接进来之前，先用模块化信息把这一页撑稳。"
             action={<InlineLink href="/tools" invert>看工具页 →</InlineLink>}
             invert
           />
@@ -148,24 +148,24 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="py-16 md:py-20">
+      <section className="py-12 md:py-16">
         <Container>
-          <Surface className="p-8 md:p-10">
+          <Surface className="p-7 md:p-9">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">
               YBOT 2.0
             </p>
-            <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div className="mt-5 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
-                <h2 className="font-display text-4xl tracking-[-0.05em] text-[var(--color-foreground)] md:text-5xl">
-                  首页先收束到 5 个核心区块，其他说明压成一段就够了。
+                <h2 className="font-display max-w-4xl text-[2.35rem] tracking-[-0.05em] text-[var(--color-foreground)] md:text-[3.1rem]">
+                  首页先做轻，结构先做稳。
                 </h2>
-                <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--color-muted)]">
-                  这样首页会更利落，信息密度也更像成熟站点。后面你只需要在这套骨架上继续填内容，不用再反复改版式。
+                <p className="mt-3 max-w-3xl text-[15px] leading-8 text-[var(--color-muted)] md:text-base">
+                  现在只保留最该出现的 5 段内容，后面的说明压成一块。首页会更利落，也更像成熟站点的门面。
                 </p>
               </div>
               <div className="flex flex-wrap gap-3 lg:justify-end">
                 <Tag>Cleaner Home</Tag>
-                <Tag>Editorial Flow</Tag>
+                <Tag>Better Type</Tag>
                 <Tag>{siteProfile.owner.location}</Tag>
               </div>
             </div>
