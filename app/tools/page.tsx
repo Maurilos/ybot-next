@@ -9,7 +9,7 @@ import {
   SectionHeading,
   Surface,
 } from "@/components/site-primitives";
-import { tools } from "@/lib/site-data";
+import { getAllTools } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "工具",
@@ -17,6 +17,8 @@ export const metadata: Metadata = {
 };
 
 export default function ToolsPage() {
+  const tools = getAllTools();
+
   return (
     <>
       <PageHero
@@ -41,7 +43,7 @@ export default function ToolsPage() {
           />
           <div className="grid gap-6 md:grid-cols-2">
             {tools.map((tool) => (
-              <ToolCard key={tool.name} tool={tool} />
+              <ToolCard key={tool.slug} tool={tool} />
             ))}
           </div>
         </Container>

@@ -1,5 +1,6 @@
 import { InlineLink, Surface, Tag } from "@/components/site-primitives";
-import type { Post, Project, Tool } from "@/lib/site-data";
+import { formatDisplayDate } from "@/lib/content";
+import type { Post, Project, Tool } from "@/content/types";
 
 export function ArticleCard({
   post,
@@ -17,7 +18,7 @@ export function ArticleCard({
       <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-muted)]">
         <span>{post.category}</span>
         <span className="h-1 w-1 rounded-full bg-black/20" />
-        <span>{post.date}</span>
+        <span>{formatDisplayDate(post.publishedAt)}</span>
         <span className="h-1 w-1 rounded-full bg-black/20" />
         <span>{post.readTime}</span>
       </div>
@@ -54,11 +55,14 @@ export function ArticleCard({
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <Surface className="h-full p-8">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-start justify-between gap-4">
         <Tag>{project.tag}</Tag>
-        <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">
-          Selected Work
-        </span>
+        <div className="text-right">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">
+            {project.year}
+          </p>
+          <p className="mt-2 text-xs text-[var(--color-foreground)]/64">{project.status}</p>
+        </div>
       </div>
       <h3 className="font-display mt-6 text-3xl tracking-[-0.04em] text-[var(--color-foreground)]">
         {project.name}
@@ -80,11 +84,14 @@ export function ToolCard({ tool }: { tool: Tool }) {
     <Surface className="h-full p-7">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Tag>{tool.category}</Tag>
-        <span className="text-xs text-[var(--color-muted)]">{tool.useCase}</span>
+        <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-muted)]">
+          {tool.priority}
+        </span>
       </div>
       <h3 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-[var(--color-foreground)]">
         {tool.name}
       </h3>
+      <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">{tool.useCase}</p>
       <p className="mt-4 text-sm leading-7 text-[var(--color-muted)] md:text-base md:leading-8">
         {tool.description}
       </p>

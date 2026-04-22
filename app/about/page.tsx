@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { principles, timeline } from "@/content/site";
 import {
   Container,
   PageHero,
@@ -8,7 +9,7 @@ import {
   SectionHeading,
   Surface,
 } from "@/components/site-primitives";
-import { principles, timeline } from "@/lib/site-data";
+import { getContentSnapshot } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "关于",
@@ -16,12 +17,14 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const snapshot = getContentSnapshot();
+
   return (
     <>
       <PageHero
         eyebrow="About The Reframe"
         title="这次改版不是单页美化，而是一次前台品牌系统重建。"
-        description="目标很直接：保留原站内容方向，把参考站那种清晰秩序借过来，再把 YBOT 自己的气场、骨感和个人辨识度拉上去。"
+        description={`目标很直接：保留原站内容方向，把参考站那种清晰秩序借过来，再把 YBOT 自己的气场、骨感和个人辨识度拉上去。当前已经能承接 ${snapshot.postCount} 篇文章、${snapshot.projectCount} 个项目模块和 ${snapshot.toolCount} 个工具模块。`}
         compact
         actions={
           <>

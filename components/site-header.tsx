@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Container } from "@/components/site-primitives";
-import { navigation } from "@/lib/site-data";
+import { SiteNav } from "@/components/site-nav";
 
 export function SiteHeader() {
   return (
@@ -23,17 +23,7 @@ export function SiteHeader() {
         </div>
 
         <div className="flex flex-wrap items-center gap-3 md:justify-end">
-          <nav className="flex flex-wrap items-center gap-2 rounded-full border border-black/8 bg-white/70 p-1">
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-full px-4 py-2 text-sm font-medium text-[var(--color-foreground)] transition hover:bg-black/[0.04]"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <SiteNav />
           <a
             href="https://ybot.top/"
             target="_blank"

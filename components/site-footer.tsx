@@ -1,9 +1,12 @@
 import Link from "next/link";
 
+import { navigation, principles } from "@/content/site";
 import { Container, Tag } from "@/components/site-primitives";
-import { navigation, posts, principles } from "@/lib/site-data";
+import { getRecentPosts } from "@/lib/content";
 
 export function SiteFooter() {
+  const latestPosts = getRecentPosts(3);
+
   return (
     <footer className="border-t border-black/8 bg-[var(--color-ink)] text-white">
       <Container className="py-16 md:py-20">
@@ -48,9 +51,9 @@ export function SiteFooter() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">精选文章</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">最新文章</p>
               <ul className="mt-5 space-y-4 text-sm text-white/78">
-                {posts.slice(0, 3).map((post) => (
+                {latestPosts.map((post) => (
                   <li key={post.slug}>
                     <Link href={`/blog/${post.slug}`} className="transition hover:text-white">
                       {post.title}

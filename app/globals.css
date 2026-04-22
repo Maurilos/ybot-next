@@ -8,13 +8,16 @@
   --color-ink-soft: #111a2f;
   --color-accent: #3d63ff;
   --color-accent-strong: #2646d8;
+  --font-site-sans: "SF Pro Display", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+  --font-site-mono: "SFMono-Regular", "JetBrains Mono", "Cascadia Code", "Fira Code", Consolas, monospace;
+  --font-site-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Songti SC", "STSong", serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-site-sans);
+  --font-mono: var(--font-site-mono);
 }
 
 html {
@@ -29,7 +32,7 @@ body {
     linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 18%),
     var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  font-family: var(--font-site-sans);
   text-rendering: optimizeLegibility;
 }
 
@@ -61,7 +64,7 @@ a {
 }
 
 .font-display {
-  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Songti SC", "STSong", serif;
+  font-family: var(--font-site-display);
 }
 
 .article-content > * + * {
@@ -70,7 +73,7 @@ a {
 
 .article-content h2 {
   margin-top: 3.5rem;
-  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Songti SC", "STSong", serif;
+  font-family: var(--font-site-display);
   font-size: clamp(2rem, 2.2vw, 2.7rem);
   line-height: 0.98;
   letter-spacing: -0.045em;

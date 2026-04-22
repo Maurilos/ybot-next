@@ -9,17 +9,22 @@ import {
   Surface,
   Tag,
 } from "@/components/site-primitives";
+import { heroMetrics, homePillars, principles, timeline } from "@/content/site";
 import {
-  heroMetrics,
-  homePillars,
-  posts,
-  principles,
-  projects,
-  timeline,
-  tools,
-} from "@/lib/site-data";
+  getContentSnapshot,
+  getFeaturedPost,
+  getFeaturedProjects,
+  getAllTools,
+  getRecentPosts,
+} from "@/lib/content";
 
 export default function Home() {
+  const featuredPost = getFeaturedPost();
+  const secondaryPosts = featuredPost ? getRecentPosts(2, featuredPost.slug) : [];
+  const featuredProjects = getFeaturedProjects(3);
+  const toolStack = getAllTools();
+  const snapshot = getContentSnapshot();
+
   return (
     <>
       <PageHero
@@ -82,20 +87,39 @@ export default function Home() {
 
       <section className="border-y border-black/8 bg-white/42 py-20 md:py-24">
         <Container>
+          <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+            <SectionHeading
+              eyebrow="Content Snapshot"
+              title="模板骨架已经能承接真实迁移。"
+              description={`目前这套母版已经整理出 ${snapshot.postCount} 篇文章、${snapshot.projectCount} 个项目入口和 ${snapshot.toolCount} 个工具模块的展示逻辑，最近一篇内容时间点是 ${snapshot.latestPostDate}。`}
+            />
+            <div className="flex flex-wrap gap-3 lg:justify-end">
+              <Tag>Migration Ready</Tag>
+              <Tag>Static Build</Tag>
+              <Tag>Shared UI Shell</Tag>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-black/8 bg-white/42 py-20 md:py-24">
+        <Container>
           <SectionHeading
             eyebrow="Latest Essays"
             title="先把阅读层级做漂亮，内容才会像资产。"
             description="参考站的内容优先感值得学，但 YBOT 这版会把标题、留白和模块节奏再往上推一档，让阅读更有门面感。"
             action={<InlineLink href="/blog">查看全部文章 →</InlineLink>}
           />
-          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-            <ArticleCard post={posts[0]} featured />
-            <div className="grid gap-6">
-              {posts.slice(1, 3).map((post) => (
-                <ArticleCard key={post.slug} post={post} />
-              ))}
+          {featuredPost ? (
+            <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+              <ArticleCard post={featuredPost} featured />
+              <div className="grid gap-6">
+                {secondaryPosts.map((post) => (
+                  <ArticleCard key={post.slug} post={post} />
+                ))}
+              </div>
             </div>
-          </div>
+          ) : null}
         </Container>
       </section>
 
@@ -108,8 +132,8 @@ export default function Home() {
             action={<InlineLink href="/projects">看项目模板 →</InlineLink>}
           />
           <div className="grid gap-6 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.name} project={project} />
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
         </Container>
@@ -125,10 +149,11 @@ export default function Home() {
             invert
           />
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {tools.map((tool) => (
-              <div key={tool.name} className="rounded-[28px] border border-white/10 bg-white/6 p-7 shadow-[0_18px_60px_rgba(3,7,18,0.24)]">
+            {toolStack.map((tool) => (
+              <div key={tool.slug} className="rounded-[28px] border border-white/10 bg-white/6 p-7 shadow-[0_18px_60px_rgba(3,7,18,0.24)]">
                 <Tag invert>{tool.category}</Tag>
                 <h3 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-white">{tool.name}</h3>
+                <p className="mt-3 text-xs uppercase tracking-[0.18em] text-white/42">{tool.priority}</p>
                 <p className="mt-4 text-sm leading-7 text-white/68">{tool.description}</p>
                 <p className="mt-6 border-t border-white/10 pt-5 text-sm leading-7 text-white/54">{tool.useCase}</p>
               </div>

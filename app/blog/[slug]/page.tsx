@@ -3,14 +3,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Container, PageHero, Surface, Tag } from "@/components/site-primitives";
-import { getAdjacentPosts, getPostBySlug, posts } from "@/lib/site-data";
+import {
+  formatDisplayDate,
+  getAdjacentPosts,
+  getAllPosts,
+  getPostBySlug,
+  getRelatedPosts,
+} from "@/lib/content";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
+  return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -28,6 +34,12 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.summary,
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      type: "article",
+      publishedTime: `${post.publishedAt}T00:00:00.000Z`,
+    },
   };
 }
 
@@ -40,6 +52,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const adjacent = getAdjacentPosts(post.slug);
+  const relatedPosts = getRelatedPosts(post.slug, 2);
 
   return (
     <>
@@ -54,7 +67,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="mt-5 space-y-4 text-sm text-white/72">
               <div>
                 <p className="text-white/44">发布日期</p>
-                <p className="mt-1 font-medium text-white">{post.date}</p>
+                <p className="mt-1 font-medium text-white">{formatDisplayDate(post.publishedAt)}</p>
               </div>
               <div>
                 <p className="text-white/44">阅读时间</p>
@@ -146,6 +159,42 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
             </Surface>
           </aside>
+        </Container>
+      </section>
+
+      <section className="border-t border-black/8 bg-white/42 py-20 md:py-24">
+        <Container>
+          <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">
+                Related Signal
+              </p>
+              <h2 className="font-display mt-3 text-4xl tracking-[-0.04em] text-[var(--color-foreground)] md:text-5xl">
+                继续沿着这条内容线读下去。
+              </h2>
+            </div>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {relatedPosts.map((relatedPost) => (
+              <Surface key={relatedPost.slug} className="p-8">
+                <Tag>{relatedPost.category}</Tag>
+                <h3 className="font-display mt-6 text-3xl tracking-[-0.04em] text-[var(--color-foreground)]">
+                  {relatedPost.title}
+                </h3>
+                <p className="mt-4 text-base leading-8 text-[var(--color-muted)]">{relatedPost.summary}</p>
+                <div className="mt-6 flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted)]">
+                  <span>{formatDisplayDate(relatedPost.publishedAt)}</span>
+                  <span className="h-1 w-1 rounded-full bg-black/20" />
+                  <span>{relatedPost.readTime}</span>
+                </div>
+                <div className="mt-8">
+                  <Link href={`/blog/${relatedPost.slug}`} className="inline-flex text-sm font-semibold text-[var(--color-foreground)] transition hover:text-[var(--color-accent-strong)]">
+                    打开文章 →
+                  </Link>
+                </div>
+              </Surface>
+            ))}
+          </div>
         </Container>
       </section>
     </>

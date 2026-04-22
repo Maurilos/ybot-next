@@ -9,7 +9,7 @@ import {
   SectionHeading,
   Surface,
 } from "@/components/site-primitives";
-import { projects } from "@/lib/site-data";
+import { getAllProjects } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "项目",
@@ -17,6 +17,8 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
+  const projects = getAllProjects();
+
   return (
     <>
       <PageHero
@@ -41,7 +43,7 @@ export default function ProjectsPage() {
           />
           <div className="grid gap-6 lg:grid-cols-3">
             {projects.map((project) => (
-              <ProjectCard key={project.name} project={project} />
+              <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
         </Container>
