@@ -12,8 +12,8 @@ import {
 import { getAllTools } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "资源",
-  description: "从 ybot.top 旧站迁来的资源与栏目页，包括 Agent Skills、Wiki、Daily English、Fragments 与 Links。",
+  title: "工具",
+  description: "YBOT 的工具模板页，先承接模块说明、方法层和未来可替换的工具入口。",
 };
 
 export default function ToolsPage() {
@@ -22,14 +22,14 @@ export default function ToolsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Legacy Resources"
-        title="旧站那些分散的资源页，正在被收进同一个资源工作台。"
-        description="Agent Skills、Wiki、Daily English、Fragments、Links 这些页面原本各自散落在老导航里。现在它们开始以统一卡片语言进入新站。"
+        eyebrow="Template Modules"
+        title="工具页先做成一个像工作台的地方，再慢慢填进真实资源。"
+        description="当前这页先承接方法、模块和系统说明，用占位数据把结构跑顺。未来如果接入真实工具，只需要替换条目。"
         compact
         actions={
           <>
-            <PrimaryLink href="https://ybot.top/agent-skills/">看旧站 Agent Skills</PrimaryLink>
-            <SecondaryLink href="/blog">回到文章页</SecondaryLink>
+            <PrimaryLink href="/about">看站点说明</PrimaryLink>
+            <SecondaryLink href="/blog">回到博客页</SecondaryLink>
           </>
         }
       />
@@ -37,9 +37,9 @@ export default function ToolsPage() {
       <section className="py-20 md:py-24">
         <Container>
           <SectionHeading
-            eyebrow="Migrated Resources"
-            title="这些不再是占位内容，而是旧站真实栏目。"
-            description="每张卡片都来自旧站公开页快照，包含真实标题、栏目定位和公开描述。"
+            eyebrow="Module Grid"
+            title="现在先展示“结构”，不是展示历史数据。"
+            description="每张卡片都是一个可复用模块方向，目的是让工具页在没有真实内容时也有完成度。"
           />
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {tools.map((tool) => (
@@ -54,28 +54,28 @@ export default function ToolsPage() {
           <Surface className="p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">01</p>
             <h2 className="font-display mt-4 text-3xl tracking-[-0.04em] text-[var(--color-foreground)]">
-              Agent Skills
+              先定义模块边界
             </h2>
             <p className="mt-4 text-base leading-8 text-[var(--color-muted)]">
-              旧站已经把 Agent Skills 做成独立 hub，并公开了场景规模与同步频率，这块内容很适合继续产品化。
+              工具页的任务先说清楚：展示方法、清单和工作流，不急着堆真实资源。
             </p>
           </Surface>
           <Surface className="p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">02</p>
             <h2 className="font-display mt-4 text-3xl tracking-[-0.04em] text-[var(--color-foreground)]">
-              Wiki / Daily / Fragments
+              让未来接线更轻
             </h2>
             <p className="mt-4 text-base leading-8 text-[var(--color-muted)]">
-              这些页面构成了旧站的知识沉淀层：长条目、学习输入和短碎片都各有归宿，现在要做的是让它们在新站更清楚。 
+              当真实工具进来时，只需要替换卡片内容，不需要重做版式、节奏和信息层级。
             </p>
           </Surface>
           <Surface className="p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">03</p>
             <h2 className="font-display mt-4 text-3xl tracking-[-0.04em] text-[var(--color-foreground)]">
-              Links
+              保持整站同一种气质
             </h2>
             <p className="mt-4 text-base leading-8 text-[var(--color-muted)]">
-              友情链接这种页看着小，但它很能体现一个站点的网络关系。迁过来以后，它会比老样式更像一个完整模块。 
+              这页虽然叫工具，但仍然沿用首页和博客页的语言，整体才会显得像同一个站。
             </p>
           </Surface>
         </Container>

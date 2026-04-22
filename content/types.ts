@@ -16,14 +16,6 @@ export type Pillar = {
   href: string;
 };
 
-export type LegacyResource = {
-  slug: string;
-  title: string;
-  description: string;
-  lines: string[];
-  url: string;
-};
-
 export type Project = {
   slug: string;
   name: string;
@@ -35,7 +27,6 @@ export type Project = {
   outcome: string;
   href: string;
   featured?: boolean;
-  sourceUrl?: string;
 };
 
 export type Tool = {
@@ -46,7 +37,6 @@ export type Tool = {
   useCase: string;
   description: string;
   note: string;
-  sourceUrl?: string;
 };
 
 export type TimelineEntry = {
@@ -80,6 +70,5 @@ export type Post = {
   featured?: boolean;
   rank?: number;
   sections: PostSection[];
-  sourceUrl?: string;
   wordCount?: string;
 };

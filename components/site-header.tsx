@@ -11,7 +11,7 @@ export function SiteHeader() {
         <div className="flex items-center justify-between gap-6">
           <Link href="/" className="group inline-flex flex-col">
             <span className="text-xs font-semibold uppercase tracking-[0.42em] text-[var(--color-muted)] transition group-hover:text-[var(--color-accent-strong)]">
-              {siteProfile.owner.githubHandle}
+              {siteProfile.owner.label}
             </span>
             <span className="font-display text-2xl tracking-[-0.05em] text-[var(--color-foreground)]">
               {siteProfile.title}
@@ -25,14 +25,6 @@ export function SiteHeader() {
 
         <div className="flex flex-wrap items-center gap-3 md:justify-end">
           <SiteNav />
-          <a
-            href="https://ybot.top/"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-foreground)] transition hover:border-[var(--color-accent)] hover:text-[var(--color-accent-strong)]"
-          >
-            旧站入口 ↗
-          </a>
         </div>
       </Container>
     </header>

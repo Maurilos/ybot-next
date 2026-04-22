@@ -1,61 +1,43 @@
-import { legacyResources } from "@/content/resources";
 import type { Project } from "@/content/types";
-
-function getResource(slug: string) {
-  const resource = legacyResources.find((item) => item.slug === slug);
-
-  if (!resource) {
-    throw new Error(`Missing legacy resource: ${slug}`);
-  }
-
-  return resource;
-}
-
-const openSource = getResource("open-source");
-const fragments = getResource("fragments");
-const mindmap = getResource("mindmap-viewer");
 
 export const projects: Project[] = [
   {
-    slug: openSource.slug,
-    name: openSource.title,
-    tag: "开源栏目",
+    slug: "feature-showcase",
+    name: "作品陈列面板",
+    tag: "Showcase",
     year: "2026",
-    status: "11 GitHub projects",
+    status: "旗舰模块",
     summary:
-      openSource.description || "旧站的开源项目页，集中展示 GitHub 仓库与更新节奏。",
-    detail: openSource.lines.slice(3, 8).join(" · "),
-    outcome: "把仓库列表从旧站风格迁进新站后，可以进一步接项目封面、摘要和外链。",
+      "用于承接真正重要的项目、专题或实验入口。它不求多，只求第一眼就有完成度和辨识度。",
+    detail: "适合未来放主打项目、长期专题、独立产品或代表性案例。",
+    outcome: "后面只要换内容，不需要再重做结构。",
     href: "/projects",
     featured: true,
-    sourceUrl: openSource.url,
   },
   {
-    slug: fragments.slug,
-    name: fragments.title,
-    tag: "碎片索引",
+    slug: "lab-column",
+    name: "实验栏目区",
+    tag: "Lab",
     year: "2026",
-    status: "知识片段归档",
+    status: "持续更新",
     summary:
-      fragments.lines[0] || "旧站的碎片页，把零散问题和操作记录聚合成一个索引面。",
-    detail: fragments.lines.slice(2, 7).join(" · "),
-    outcome: "这类短条目后面适合拆成独立短内容流，做成更现代的 fragment archive。",
+      "给轻实验、阶段性尝试和专题试水留一个正式位置，让它们看起来像正在成长的作品，而不是边角料。",
+    detail: "适合未来接小工具、测试页、短专题和未完成但值得展示的方向。",
+    outcome: "站点会因此更有呼吸感，不会只剩文章归档。",
     href: "/projects",
     featured: true,
-    sourceUrl: fragments.url,
   },
   {
-    slug: mindmap.slug,
-    name: mindmap.title,
-    tag: "脑图工具",
+    slug: "case-archive",
+    name: "案例归档层",
+    tag: "Archive",
     year: "2026",
-    status: "全屏查看器",
+    status: "可扩容",
     summary:
-      mindmap.description || "旧站已有独立 mindmap viewer 页面，可以作为轻量工具入口。",
-    detail: "当前公开抓到的信息较少，但栏目与功能定位已经明确，可继续补页面内容和视觉表现。",
-    outcome: "适合作为后续产品化小工具入口，纳入新站的栏目展示层。",
+      "一层更偏结构化的项目归档，用来承接未来越来越多的作品条目，同时保持页面秩序。",
+    detail: "适合继续细分成案例卡片、更新时间、分类标签与结果摘要。",
+    outcome: "数量上来以后，站点依然不会乱。",
     href: "/projects",
     featured: true,
-    sourceUrl: mindmap.url,
   },
 ];

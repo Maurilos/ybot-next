@@ -12,8 +12,8 @@ import {
 import { getAllProjects } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "栏目",
-  description: "从 ybot.top 旧站迁来的重点栏目与专题入口，包括 Open Source、Fragments 与 Mindmap Viewer。",
+  title: "项目",
+  description: "YBOT 的项目模板页，用来承接未来的作品、专题和实验入口。",
 };
 
 export default function ProjectsPage() {
@@ -22,14 +22,14 @@ export default function ProjectsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Legacy Columns"
-        title="旧站里那些更像“产品 / 专题”的页面，已经被提取成独立栏目。"
-        description="Open Source Projects、Fragments、Mindmap Viewer 这些页面在旧站里是分散入口，现在被重新整理成更像专题卡片的展示层。"
+        eyebrow="Project Showcase"
+        title="项目页负责把这座站的存在感拉出来。"
+        description="这里先不用历史条目，而是用占位项目卡定义展示方式、层级关系和扩展空间。以后接案例、专题或产品都更顺。"
         compact
         actions={
           <>
-            <PrimaryLink href="https://ybot.top/open-source/">查看旧站开源页</PrimaryLink>
-            <SecondaryLink href="/tools">看资源工作台</SecondaryLink>
+            <PrimaryLink href="/blog">看博客页</PrimaryLink>
+            <SecondaryLink href="/tools">看工具页</SecondaryLink>
           </>
         }
       />
@@ -37,9 +37,9 @@ export default function ProjectsPage() {
       <section className="py-20 md:py-24">
         <Container>
           <SectionHeading
-            eyebrow="Selected Columns"
-            title="这些是旧站里最适合被重新包装的入口。"
-            description="它们在老站已经有公开页面与内容线索，新站要做的是把它们的辨识度、结构和可继续扩展性拉起来。"
+            eyebrow="Selected Projects"
+            title="项目区先把陈列感做出来。"
+            description="真正大气的项目页，不是堆很多卡片，而是让每张卡都有位置、有主次、有存在感。"
           />
           <div className="grid gap-6 lg:grid-cols-3">
             {projects.map((project) => (
@@ -53,20 +53,20 @@ export default function ProjectsPage() {
         <Container className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <Surface className="p-8 md:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">
-              Column Strategy
+              Showcase Strategy
             </p>
             <h2 className="font-display mt-4 text-4xl tracking-[-0.05em] text-[var(--color-foreground)] md:text-5xl">
-              新站不会照抄旧站样式，但会保留旧站的内容身份。 
+              先把版式做得像作品墙，再决定挂什么作品。
             </h2>
             <p className="mt-5 text-base leading-8 text-[var(--color-muted)]">
-              所以这些页面在新站里不再只是旧模板里的一个链接，而会变成真正有气场、有摘要、有延展空间的栏目模块。 
+              这一步做对以后，项目页天然就会更有品牌感，不会像从博客列表里顺手分出来的附属页面。
             </p>
           </Surface>
           <Surface className="p-8 md:p-10">
             <div className="space-y-5 text-sm leading-7 text-[var(--color-foreground)]/84 md:text-base md:leading-8">
-              <p>— Open Source 可以继续细化成仓库卡片、更新时间和外链结构。</p>
-              <p>— Fragments 很适合以后变成独立短内容流。</p>
-              <p>— Mindmap Viewer 这类轻工具页，适合纳入新站的实验/工具入口层。</p>
+              <p>— 主打项目负责抬高页面气场。</p>
+              <p>— 实验项目负责让站点保持活性。</p>
+              <p>— 归档型项目负责让未来扩容时依旧清楚。</p>
             </div>
           </Surface>
         </Container>

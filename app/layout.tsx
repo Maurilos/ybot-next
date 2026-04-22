@@ -9,7 +9,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://ybot.top"),
   title: {
-    default: `${siteProfile.title} — Reframed`,
+    default: `${siteProfile.title} — Editorial Template`,
     template: `%s | ${siteProfile.title}`,
   },
   description: siteProfile.description,

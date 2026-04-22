@@ -36,13 +36,13 @@ export default function BlogPage() {
     <>
       <PageHero
         eyebrow="Journal"
-        title="博客页不只是在列文章，它应该像一本正在持续更新的刊物。"
-        description={`这一版把文章列表做成更有封面感的结构：上方一篇主打，下面是更克制的栅格。目前已经整理出 ${snapshot.postCount} 篇内容，最近更新于 ${snapshot.latestPostDate}。`}
+        title="博客页不只是列文章，它应该像一本持续更新的刊物。"
+        description={`当前先用 ${snapshot.postCount} 篇示例文章把列表和详情页骨架跑通，最近更新于 ${snapshot.latestPostDate}。以后替换真实内容时，不需要再动版式。`}
         compact
         actions={
           <>
             {featuredPost ? <PrimaryLink href={`/blog/${featuredPost.slug}`}>阅读主打文章</PrimaryLink> : null}
-            <SecondaryLink href="https://ybot.top/">对照旧站内容</SecondaryLink>
+            <SecondaryLink href="/projects">看项目页节奏</SecondaryLink>
           </>
         }
       />
@@ -52,7 +52,7 @@ export default function BlogPage() {
           <SectionHeading
             eyebrow="Featured Story"
             title="当前主打"
-            description="用更大的标题、更长的留白和更清楚的元信息，给列表页一个真正的视觉重心。"
+            description="先让列表页拥有一个明确的视觉起点，后面的归档栅格再跟上。"
           />
           {featuredPost ? <ArticleCard post={featuredPost} featured /> : null}
         </Container>
@@ -62,8 +62,8 @@ export default function BlogPage() {
         <Container>
           <SectionHeading
             eyebrow="Categories"
-            title="先把迁移后的栏目框架立清楚。"
-            description="现在先用分类统计和主线模块把内容结构固定住。后面接入旧站文章时，列表页的骨架不用再推倒重搭。"
+            title="分类先做成结构，不急着追数量。"
+            description="这里只用少量占位分类验证版式、统计模块和标签节奏，等真实内容接入再自然扩容。"
           />
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {categories.map((category) => (
@@ -73,7 +73,7 @@ export default function BlogPage() {
                   {String(category.count).padStart(2, "0")}
                 </p>
                 <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
-                  这个板块已经有可展示内容，适合后续继续沿同一条结构扩容。
+                  先把信息层级跑顺，后面换成真实文章时这块会很省心。
                 </p>
               </Surface>
             ))}
@@ -103,10 +103,10 @@ export default function BlogPage() {
               Reading Logic
             </p>
             <h2 className="font-display mt-4 text-4xl tracking-[-0.05em] text-[var(--color-foreground)] md:text-5xl">
-              文章列表的重点，是让人愿意点进去，而不是让卡片自己抢戏。
+              列表页的工作，是把读者顺手送进正文。
             </h2>
             <p className="mt-5 text-base leading-8 text-[var(--color-muted)]">
-              所以这一版列表卡片保持克制，真正把重量给标题、摘要和阅读路径。视觉会有辨识度，但不会喧宾夺主。
+              所以这套卡片保留分量，但不过度表演。真正的重点还是标题、摘要和清楚的阅读路径。
             </p>
           </Surface>
 
@@ -115,9 +115,13 @@ export default function BlogPage() {
               Archive Shape
             </p>
             <div className="mt-6 space-y-5 text-sm leading-7 text-[var(--color-foreground)]/84 md:text-base md:leading-8">
-              <p>1. 首页保留精选文章入口，让高价值内容先被看到。</p>
-              <p>2. 列表页承担归档与分类，不抢首页的戏，但要显得更专业。</p>
-              <p>3. 当前最早一批文章时间跨度从 {oldestPost ? formatDisplayDate(oldestPost.publishedAt) : snapshot.latestPostDate} 到 {snapshot.latestPostDate}。</p>
+              <p>1. 首页只放精选，保持门面干净。</p>
+              <p>2. 列表页承担归档和延展，不和首页抢戏。</p>
+              <p>
+                3. 当前示例文章时间跨度从{" "}
+                {oldestPost ? formatDisplayDate(oldestPost.publishedAt) : snapshot.latestPostDate} 到{" "}
+                {snapshot.latestPostDate}。
+              </p>
             </div>
             {featuredPost ? (
               <div className="mt-8">

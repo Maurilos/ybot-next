@@ -73,9 +73,7 @@ export function ProjectCard({ project }: { project: Project }) {
       </p>
       <p className="mt-6 text-sm font-medium text-[var(--color-accent-strong)]">{project.outcome}</p>
       <div className="mt-8">
-        <InlineLink href={project.sourceUrl ?? project.href}>
-          {project.sourceUrl ? "打开旧站原页 →" : "查看板块 →"}
-        </InlineLink>
+        <InlineLink href={project.href}>查看板块 →</InlineLink>
       </div>
     </Surface>
   );
@@ -100,11 +98,9 @@ export function ToolCard({ tool }: { tool: Tool }) {
       <p className="mt-6 rounded-2xl border border-black/8 bg-black/[0.025] p-4 text-sm leading-7 text-[var(--color-foreground)]/80">
         {tool.note}
       </p>
-      {tool.sourceUrl ? (
-        <div className="mt-8">
-          <InlineLink href={tool.sourceUrl}>打开旧站原页 →</InlineLink>
-        </div>
-      ) : null}
+      <div className="mt-8">
+        <InlineLink href="/tools">保留为模板模块 →</InlineLink>
+      </div>
     </Surface>
   );
 }

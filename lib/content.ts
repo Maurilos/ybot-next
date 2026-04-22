@@ -1,9 +1,8 @@
 import { posts } from "@/content/posts";
 import { projects } from "@/content/projects";
-import { legacyResources } from "@/content/resources";
 import { siteProfile } from "@/content/site";
 import { tools } from "@/content/tools";
-import type { LegacyResource, Post, Project, Tool } from "@/content/types";
+import type { Post, Project, Tool } from "@/content/types";
 
 function sortPosts(collection: Post[]) {
   return [...collection].sort((left, right) => {
@@ -110,14 +109,6 @@ export function getAllTools(): Tool[] {
   return [...tools];
 }
 
-export function getAllLegacyResources(): LegacyResource[] {
-  return [...legacyResources];
-}
-
-export function getLegacyResourceBySlug(slug: string) {
-  return legacyResources.find((resource) => resource.slug === slug);
-}
-
 export function getContentSnapshot() {
   const orderedPosts = getAllPosts();
 
@@ -125,7 +116,6 @@ export function getContentSnapshot() {
     postCount: orderedPosts.length,
     projectCount: projects.length,
     toolCount: tools.length,
-    resourceCount: legacyResources.length,
     latestPostDate: orderedPosts[0] ? formatDisplayDate(orderedPosts[0].publishedAt) : "",
     siteTitle: siteProfile.title,
   };

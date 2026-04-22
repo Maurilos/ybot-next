@@ -19,7 +19,7 @@ export default function NotFound() {
             这页没接上线，但整座站还亮着。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-white/68 md:text-lg">
-            你访问的路径不存在，或者还没把旧站内容迁进来。先回到首页、博客或项目页，继续沿着新的模板骨架逛下去。
+            你访问的路径不存在，或者这块内容还没填。先回到首页、博客或项目页，继续沿着新的模板骨架逛下去。
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
             <PrimaryLink href="/">回到首页</PrimaryLink>

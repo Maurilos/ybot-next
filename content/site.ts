@@ -1,108 +1,103 @@
-import snapshot from "@/content/legacy-site.snapshot.json";
-import { legacyResources } from "@/content/resources";
 import type { Metric, NavItem, Pillar, Principle, TimelineEntry } from "@/content/types";
 
-const aboutPage = legacyResources.find((resource) => resource.slug === "about");
-
 export const siteProfile = {
-  title: snapshot.site.title,
-  description: snapshot.site.description,
-  heroTagline: snapshot.site.heroTagline,
-  owner: snapshot.site.owner,
-  aboutLines: aboutPage?.lines.slice(0, 5) ?? [],
-  legacySections: snapshot.site.nav
-    .filter((item, index, items) => {
-      const key = `${item.path}-${item.label}`;
-      return (
-        ["首页", "分享", "归档", "碎片", "英语", "维基", "Agent Skills", "链接", "关于"].includes(item.label) &&
-        items.findIndex((candidate) => `${candidate.path}-${candidate.label}` === key) === index
-      );
-    })
-    .slice(0, 9),
+  title: "YBOT",
+  description:
+    "一套更大气、更有编辑感的个人内容站母版。先把整站结构、视觉节奏和模块关系立起来，再慢慢接入真实内容。",
+  heroTagline: "先把整站架构搭稳，再让内容慢慢长出来。",
+  owner: {
+    displayName: "YBOT Studio",
+    label: "Editorial System",
+    role: "Builder / Curator",
+    location: "Shanghai",
+  },
+  aboutLines: [
+    "这个版本只负责把前台架构立起来：路由、模板、节奏、排版、卡片系统和阅读体验全部先定型。",
+    "它不依赖任何历史数据。当前页面里的文章、工具和项目都只是占位内容，用来验证结构是否顺手。",
+    "首页负责气质和入口，博客页负责归档和阅读，工具页负责方法与模块，项目页负责展示与扩展。",
+    "真正的内容以后可以一批批接入，但那应该发生在模板、信息层级和视觉系统已经稳定之后。",
+  ],
 };
 
 export const navigation: NavItem[] = [
   { href: "/", label: "首页" },
-  { href: "/blog", label: "文章" },
-  { href: "/tools", label: "资源" },
-  { href: "/projects", label: "栏目" },
+  { href: "/blog", label: "博客" },
+  { href: "/tools", label: "工具" },
+  { href: "/projects", label: "项目" },
   { href: "/about", label: "关于" },
 ];
 
 export const heroMetrics: Metric[] = [
   {
-    label: "旧站文章",
-    value: `${snapshot.posts.length} 篇`,
-    detail: "已把旧站当前可索引的正式文章清单抓成本地快照，用于静态迁移。",
+    label: "核心路由",
+    value: "05 个",
+    detail: "首页、博客、工具、项目、关于已经统一进一套整站模板体系。",
   },
   {
-    label: "栏目页面",
-    value: `${legacyResources.length} 个`,
-    detail: "About、Wiki、Daily、Fragments、Agent Skills 等页面已经进入迁移素材层。",
+    label: "模板模块",
+    value: "12+ 组",
+    detail: "导航、Hero、卡片、详情页、页脚、404 与 loading 都能复用。",
   },
   {
-    label: "作者与出处",
-    value: `@${snapshot.site.owner.githubHandle}`,
-    detail: `${snapshot.site.owner.location} · 来自旧站公开页面与搜索索引快照。`,
+    label: "内容状态",
+    value: "占位架构",
+    detail: "现在只保留结构和视觉节奏，后面再把真实内容接进来。",
   },
 ];
 
 export const homePillars: Pillar[] = [
   {
-    eyebrow: "Articles",
-    title: "旧站文章",
+    eyebrow: "Journal",
+    title: "博客模板",
     description:
-      "把 ybot.top 当前首页可见的三篇正式文章迁进新模板：两篇 Claude 深度解析，一篇认知主题文章。",
+      "先把列表页和详情页的阅读体验搭成型：主打文章、分类统计、栅格归档、正文排版全部已经有骨架。",
     href: "/blog",
   },
   {
-    eyebrow: "Resources",
-    title: "资源栏目",
+    eyebrow: "Toolkit",
+    title: "工具工作台",
     description:
-      "Agent Skills、Wiki、Daily English、Links 等栏目开始进入统一的资源页，不再散落在旧站的不同导航节点里。",
+      "工具页现在承接的是模块化信息：设计令牌、内容模型、导航系统、上线清单，适合以后再替换成真实资源。",
     href: "/tools",
   },
   {
-    eyebrow: "Columns",
-    title: "重点栏目",
+    eyebrow: "Showcase",
+    title: "项目展示层",
     description:
-      "Open Source、Fragments、Mindmap Viewer 这类更像专题或产品入口的页面，被重新整理进新站的栏目展示层。",
+      "项目页负责拉开气场，把专题、案例、实验入口陈列得更像作品展示，而不是一个平铺直叙的链接列表。",
     href: "/projects",
   },
 ];
 
 export const principles: Principle[] = [
   {
-    title: "先抓公开快照，再本地静态化",
-    description:
-      "这次迁移不是运行时去抓旧站，而是把旧站公开内容保存为本地快照，再喂给新模板，保证构建稳定。",
+    title: "先立结构",
+    description: "先把页面关系、信息层级和组件系统稳定下来，再决定接什么内容。",
   },
   {
-    title: "模板负责统一表达，内容负责还原身份",
-    description:
-      "新站继续保持更大气的视觉系统，但文案、文章标题、栏目说明已经开始回到 YBot Archive 的真实语境。",
+    title: "统一语气",
+    description: "首页、列表页、详情页、页脚和空状态都必须处在同一套视觉语言里。",
   },
   {
-    title: "旧站栏目不丢，新站结构重排",
-    description:
-      "旧站有分享、碎片、英语、维基、Agent Skills、链接等栏目，新站会在更清楚的层级里把它们重新组织起来。",
+    title: "内容后置",
+    description: "当前数据只承担占位职责，后续替换真实内容时，不需要再推倒模板重做。",
   },
 ];
 
 export const timeline: TimelineEntry[] = [
   {
     year: "01",
-    title: "抓取旧站公开索引",
-    description: "已经从首页、搜索索引、feed 与关键栏目页生成本地迁移快照。",
+    title: "定义视觉系统",
+    description: "把颜色、字体、容器、圆角、阴影和模块节奏先统一成一套稳定表达。",
   },
   {
     year: "02",
-    title: "映射到新站内容模型",
-    description: "把文章、资源栏目、专题页拆成独立模块，开始替换掉模板示例文案。",
+    title: "铺开整站模板",
+    description: "首页、博客、工具、项目、关于、404 与 loading 全部接到同一套母版上。",
   },
   {
     year: "03",
-    title: "逐步扩展更多存量页面",
-    description: "下一步可以继续把 archives、categories 以及更细的 wiki 条目、碎片条目往新结构里扩。",
+    title: "后续接入真实内容",
+    description: "等骨架稳定后，再把未来的文章、项目、资源逐步换进来，不会再动大结构。",
   },
 ];
