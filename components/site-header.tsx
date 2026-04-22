@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-import { Container } from "@/components/site-primitives";
+import { siteProfile } from "@/content/site";
 import { SiteNav } from "@/components/site-nav";
+import { Container } from "@/components/site-primitives";
 
 export function SiteHeader() {
   return (
@@ -10,15 +11,15 @@ export function SiteHeader() {
         <div className="flex items-center justify-between gap-6">
           <Link href="/" className="group inline-flex flex-col">
             <span className="text-xs font-semibold uppercase tracking-[0.42em] text-[var(--color-muted)] transition group-hover:text-[var(--color-accent-strong)]">
-              YBOT
+              {siteProfile.owner.githubHandle}
             </span>
             <span className="font-display text-2xl tracking-[-0.05em] text-[var(--color-foreground)]">
-              Signal-Led Site System
+              {siteProfile.title}
             </span>
           </Link>
           <div className="hidden h-10 w-px bg-black/10 md:block" />
           <p className="hidden max-w-md text-sm leading-6 text-[var(--color-muted)] md:block">
-            保留原站内容方向，把前台皮肤改造成更厚重、更有个人锋芒的编辑型模板。
+            {siteProfile.description}
           </p>
         </div>
 

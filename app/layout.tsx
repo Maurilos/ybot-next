@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { siteProfile } from "@/content/site";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
@@ -8,24 +9,21 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://ybot.top"),
   title: {
-    default: "YBOT — Signal-Led Site System",
-    template: "%s | YBOT",
+    default: `${siteProfile.title} — Reframed`,
+    template: `%s | ${siteProfile.title}`,
   },
-  description:
-    "一个更大气、更有个性的内容型个人站模板系统，承接博客、工具、项目与品牌表达。",
+  description: siteProfile.description,
   openGraph: {
-    title: "YBOT — Signal-Led Site System",
-    description:
-      "把博客、工具、项目与个人品牌放进同一套前台模板，做出更厚重的内容型站点。",
+    title: siteProfile.title,
+    description: siteProfile.description,
     url: "https://ybot.top",
-    siteName: "YBOT",
+    siteName: siteProfile.title,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "YBOT — Signal-Led Site System",
-    description:
-      "更大气、更锋利的内容型个人站模板系统。",
+    title: siteProfile.title,
+    description: siteProfile.description,
   },
 };
 

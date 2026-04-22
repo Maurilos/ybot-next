@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { navigation, principles } from "@/content/site";
+import { navigation, principles, siteProfile } from "@/content/site";
 import { Container, Tag } from "@/components/site-primitives";
 import { getRecentPosts } from "@/lib/content";
 
@@ -12,12 +12,12 @@ export function SiteFooter() {
       <Container className="py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
           <div>
-            <Tag invert>YBOT 2.0</Tag>
+            <Tag invert>{siteProfile.title}</Tag>
             <h2 className="font-display mt-6 max-w-lg text-4xl tracking-[-0.05em] text-white md:text-5xl">
-              模板先行，内容随后接入，整个站点才会站稳。
+              关于技术、折腾、阅读与长期留存的一份持续记录。
             </h2>
             <p className="mt-5 max-w-xl text-base leading-8 text-white/68">
-              这次改版不是换一张首页海报，而是建立一个能承接博客、工具、项目和个人表达的前台系统。
+              新站已经开始把旧站公开内容静态迁移进来：文章、栏目页、资源页和专题入口都在同一套前台模板里重新组织。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {principles.map((principle) => (
@@ -51,7 +51,7 @@ export function SiteFooter() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">最新文章</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">已迁移文章</p>
               <ul className="mt-5 space-y-4 text-sm text-white/78">
                 {latestPosts.map((post) => (
                   <li key={post.slug}>
@@ -64,17 +64,21 @@ export function SiteFooter() {
             </div>
 
             <div className="sm:col-span-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">说明</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">出处</p>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-white/68">
-                当前版本先把视觉模板、内容列表、文章详情和项目展示做成统一系统，后续可以直接把真实数据源接进来，不需要再拆一遍前端。
+                当前版本依据旧站首页、search index、Atom feed 与公开栏目页快照构建。作者 GitHub：
+                <a href={`https://github.com/${siteProfile.owner.githubHandle}`} target="_blank" rel="noreferrer" className="ml-1 underline-offset-4 hover:underline">
+                  @{siteProfile.owner.githubHandle}
+                </a>
+                。
               </p>
             </div>
           </div>
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.24em] text-white/42 md:flex-row md:items-center md:justify-between">
-          <span>© 2026 YBOT. Crafted for a stronger front-end identity.</span>
-          <span>Editorial rhythm · sharper silhouette · calmer structure</span>
+          <span>© 2026 {siteProfile.title}. Reframed from the legacy archive.</span>
+          <span>Real content migrated into a calmer, larger editorial shell</span>
         </div>
       </Container>
     </footer>

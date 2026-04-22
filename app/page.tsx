@@ -9,7 +9,7 @@ import {
   Surface,
   Tag,
 } from "@/components/site-primitives";
-import { heroMetrics, homePillars, principles, timeline } from "@/content/site";
+import { heroMetrics, homePillars, siteProfile, timeline } from "@/content/site";
 import {
   getContentSnapshot,
   getFeaturedPost,
@@ -28,12 +28,12 @@ export default function Home() {
   return (
     <>
       <PageHero
-        eyebrow="Front-End Reframe"
-        title="把 YBOT 做成一座更有压场的内容门面。"
-        description="保留原网站的内容方向，用整站模板化的方式重做前台视觉层。参考目标站的秩序感，但把气质拉得更厚、更开、更有个人棱角。"
+        eyebrow={siteProfile.title}
+        title={siteProfile.heroTagline}
+        description={`${siteProfile.description} 这一版首页已经开始承接旧站真实内容：${snapshot.postCount} 篇文章、${snapshot.resourceCount} 个栏目页面与一批重点入口被重组进新的前台模板。`}
         actions={
           <>
-            <PrimaryLink href="/blog">先看模板里的内容页</PrimaryLink>
+            <PrimaryLink href="/blog">查看已迁移文章</PrimaryLink>
             <SecondaryLink href="https://ybot.top/">打开旧站对照</SecondaryLink>
           </>
         }
@@ -60,9 +60,9 @@ export default function Home() {
       <section className="py-20 md:py-24">
         <Container>
           <SectionHeading
-            eyebrow="Core Channels"
-            title="整站不再只是首页好看，而是每一层都像同一个品牌。"
-            description="这次模板化先把最关键的三条内容主线拉通：博客、工具、项目。每条线都共享统一的骨架，但保留自己的叙事重点。"
+            eyebrow="Archive Channels"
+            title="旧站内容已经开始按新结构重排。"
+            description="不再让文章、资源和专题入口散落在老导航里，而是收进一套更统一、更耐看的编辑型前台。"
           />
           <div className="grid gap-6 lg:grid-cols-3">
             {homePillars.map((pillar) => (
@@ -89,14 +89,14 @@ export default function Home() {
         <Container>
           <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
             <SectionHeading
-              eyebrow="Content Snapshot"
-              title="模板骨架已经能承接真实迁移。"
-              description={`目前这套母版已经整理出 ${snapshot.postCount} 篇文章、${snapshot.projectCount} 个项目入口和 ${snapshot.toolCount} 个工具模块的展示逻辑，最近一篇内容时间点是 ${snapshot.latestPostDate}。`}
+              eyebrow="Migration Snapshot"
+              title="这次不是换一层假皮，而是在迁老站。"
+              description={`目前已本地化 ${snapshot.postCount} 篇正式文章、${snapshot.resourceCount} 个公开栏目页，并把旧站主题“技术、折腾、阅读与长期留存”放回到新首页的正中央。`}
             />
             <div className="flex flex-wrap gap-3 lg:justify-end">
-              <Tag>Migration Ready</Tag>
-              <Tag>Static Build</Tag>
-              <Tag>Shared UI Shell</Tag>
+              <Tag>Legacy Snapshot</Tag>
+              <Tag>Static Content</Tag>
+              <Tag>{siteProfile.owner.location}</Tag>
             </div>
           </div>
         </Container>
@@ -105,9 +105,9 @@ export default function Home() {
       <section className="border-b border-black/8 bg-white/42 py-20 md:py-24">
         <Container>
           <SectionHeading
-            eyebrow="Latest Essays"
-            title="先把阅读层级做漂亮，内容才会像资产。"
-            description="参考站的内容优先感值得学，但 YBOT 这版会把标题、留白和模块节奏再往上推一档，让阅读更有门面感。"
+            eyebrow="Latest From Legacy"
+            title="旧站当前三篇正式文章，已经迁进新模板。"
+            description="文章标题、分类、阅读时长、关键词与正文结构都来自旧站公开页面快照，而不是示例文案。"
             action={<InlineLink href="/blog">查看全部文章 →</InlineLink>}
           />
           {featuredPost ? (
@@ -126,10 +126,10 @@ export default function Home() {
       <section className="py-20 md:py-24">
         <Container>
           <SectionHeading
-            eyebrow="Selected Work"
-            title="项目页要像案例档案，不像功能清单。"
-            description="项目模块会用更稳的卡片、更厚的叙事和更明确的结果感，帮你把“我做过什么”说得更可信。"
-            action={<InlineLink href="/projects">看项目模板 →</InlineLink>}
+            eyebrow="Selected Columns"
+            title="旧站里更像“栏目 / 产品”的入口，被集中成一个展示面。"
+            description="Open Source、Fragments、Mindmap Viewer 这些页面不再塞在旧导航里，而是被重新包装成更清晰的专题卡片。"
+            action={<InlineLink href="/projects">看栏目页 →</InlineLink>}
           />
           <div className="grid gap-6 lg:grid-cols-3">
             {featuredProjects.map((project) => (
@@ -142,14 +142,14 @@ export default function Home() {
       <section className="border-y border-black/8 bg-[var(--color-ink)] py-20 text-white md:py-24">
         <Container>
           <SectionHeading
-            eyebrow="Operator Stack"
-            title="工具页不是收链接，而是输出判断。"
-            description="真正有用的工具目录，得告诉人什么时候用、为什么留、和别的方案相比值不值得长期放进系统。"
-            action={<InlineLink href="/tools" invert>看工具目录 →</InlineLink>}
+            eyebrow="Resource Layers"
+            title="旧站的资源类页面，也被迁成统一的资源工作台。"
+            description="Agent Skills、Wiki、Daily English、Links、Fragments 这些原本分散的页面，现在开始进入更一致的展示层。"
+            action={<InlineLink href="/tools" invert>看资源页 →</InlineLink>}
             invert
           />
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {toolStack.map((tool) => (
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {toolStack.slice(0, 3).map((tool) => (
               <div key={tool.slug} className="rounded-[28px] border border-white/10 bg-white/6 p-7 shadow-[0_18px_60px_rgba(3,7,18,0.24)]">
                 <Tag invert>{tool.category}</Tag>
                 <h3 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-white">{tool.name}</h3>
@@ -166,19 +166,16 @@ export default function Home() {
         <Container className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <Surface className="p-8 md:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">
-              Method
+              About The Archive
             </p>
             <h2 className="font-display mt-4 text-4xl tracking-[-0.04em] text-[var(--color-foreground)] md:text-5xl">
-              这次改版真正要做的，不是一张新皮，而是一套长期能撑住内容增长的母版。
+              作者页里的真实自述，也开始回到新站里。
             </h2>
             <div className="mt-8 space-y-5">
-              {principles.map((principle) => (
-                <div key={principle.title} className="rounded-[22px] border border-black/8 bg-black/[0.025] p-5">
-                  <h3 className="text-lg font-semibold tracking-[-0.03em] text-[var(--color-foreground)]">
-                    {principle.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
-                    {principle.description}
+              {siteProfile.aboutLines.slice(1, 4).map((line) => (
+                <div key={line} className="rounded-[22px] border border-black/8 bg-black/[0.025] p-5">
+                  <p className="text-sm leading-7 text-[var(--color-foreground)]/82 md:text-base md:leading-8">
+                    {line}
                   </p>
                 </div>
               ))}
@@ -213,19 +210,19 @@ export default function Home() {
       <section className="pb-20 md:pb-24">
         <Container>
           <div className="rounded-[36px] border border-black/8 bg-[var(--color-ink)] px-7 py-10 text-white shadow-[0_26px_90px_rgba(3,7,18,0.22)] md:px-10 md:py-14">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/44">Ready to Scale</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/44">Next Migration Step</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
                 <h2 className="font-display text-4xl tracking-[-0.05em] md:text-5xl">
-                  新模板已经把门面立起来了，下一步就是把旧站内容一层层接进来。
+                  下一步可以继续把 archives、categories、wiki 子条目和更多碎片条目往新站接。
                 </h2>
                 <p className="mt-4 max-w-3xl text-base leading-8 text-white/68">
-                  先完成视觉骨架，再做数据接驳。这样不管博客、工具还是项目，迁移时都不会再被样式反复拖住脚。
+                  当前已经不是模板示例站，而是把旧站真实公开内容开始逐块迁进来了。后面继续接更多历史内容就行。
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">
-                <PrimaryLink href="/blog">进入内容模板</PrimaryLink>
-                <SecondaryLink href="/about">查看整站说明</SecondaryLink>
+                <PrimaryLink href="/blog">继续看文章</PrimaryLink>
+                <SecondaryLink href="/about">查看站点说明</SecondaryLink>
               </div>
             </div>
           </div>

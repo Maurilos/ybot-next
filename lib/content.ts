@@ -1,14 +1,22 @@
 import { posts } from "@/content/posts";
 import { projects } from "@/content/projects";
+import { legacyResources } from "@/content/resources";
+import { siteProfile } from "@/content/site";
 import { tools } from "@/content/tools";
-import type { Post, Project, Tool } from "@/content/types";
+import type { LegacyResource, Post, Project, Tool } from "@/content/types";
 
-function sortPostsByPublishedAt(collection: Post[]) {
-  return [...collection].sort(
-    (left, right) =>
+function sortPosts(collection: Post[]) {
+  return [...collection].sort((left, right) => {
+    const dateDelta =
       new Date(`${right.publishedAt}T00:00:00Z`).getTime() -
-      new Date(`${left.publishedAt}T00:00:00Z`).getTime(),
-  );
+      new Date(`${left.publishedAt}T00:00:00Z`).getTime();
+
+    if (dateDelta !== 0) {
+      return dateDelta;
+    }
+
+    return (left.rank ?? 99) - (right.rank ?? 99);
+  });
 }
 
 export function formatDisplayDate(date: string) {
@@ -21,7 +29,7 @@ export function formatDisplayDate(date: string) {
 }
 
 export function getAllPosts() {
-  return sortPostsByPublishedAt(posts);
+  return sortPosts(posts);
 }
 
 export function getFeaturedPost() {
@@ -102,6 +110,14 @@ export function getAllTools(): Tool[] {
   return [...tools];
 }
 
+export function getAllLegacyResources(): LegacyResource[] {
+  return [...legacyResources];
+}
+
+export function getLegacyResourceBySlug(slug: string) {
+  return legacyResources.find((resource) => resource.slug === slug);
+}
+
 export function getContentSnapshot() {
   const orderedPosts = getAllPosts();
 
@@ -109,6 +125,8 @@ export function getContentSnapshot() {
     postCount: orderedPosts.length,
     projectCount: projects.length,
     toolCount: tools.length,
+    resourceCount: legacyResources.length,
     latestPostDate: orderedPosts[0] ? formatDisplayDate(orderedPosts[0].publishedAt) : "",
+    siteTitle: siteProfile.title,
   };
 }

@@ -12,8 +12,8 @@ import {
 import { getAllTools } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "工具",
-  description: "YBOT 的工具目录模板页，用更清晰的分类和判断语气展示工作流资源。",
+  title: "资源",
+  description: "从 ybot.top 旧站迁来的资源与栏目页，包括 Agent Skills、Wiki、Daily English、Fragments 与 Links。",
 };
 
 export default function ToolsPage() {
@@ -22,14 +22,14 @@ export default function ToolsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Tool Curation"
-        title="工具页不再只是收藏夹，它会像一张带判断的作战桌。"
-        description="这一页的重点不是把链接铺满，而是把工具和任务关系讲清楚：什么时候用、为什么留、适不适合长期放进自己的系统。"
+        eyebrow="Legacy Resources"
+        title="旧站那些分散的资源页，正在被收进同一个资源工作台。"
+        description="Agent Skills、Wiki、Daily English、Fragments、Links 这些页面原本各自散落在老导航里。现在它们开始以统一卡片语言进入新站。"
         compact
         actions={
           <>
-            <PrimaryLink href="/projects">看项目页模板</PrimaryLink>
-            <SecondaryLink href="/blog">回到内容页</SecondaryLink>
+            <PrimaryLink href="https://ybot.top/agent-skills/">看旧站 Agent Skills</PrimaryLink>
+            <SecondaryLink href="/blog">回到文章页</SecondaryLink>
           </>
         }
       />
@@ -37,11 +37,11 @@ export default function ToolsPage() {
       <section className="py-20 md:py-24">
         <Container>
           <SectionHeading
-            eyebrow="Curated Stack"
-            title="不是收录越多越好，而是留下真正会反复用的。"
-            description="工具页在整站里的角色，是把散乱资源提炼成判断系统。每一张卡都应该替你回答一个现实问题。"
+            eyebrow="Migrated Resources"
+            title="这些不再是占位内容，而是旧站真实栏目。"
+            description="每张卡片都来自旧站公开页快照，包含真实标题、栏目定位和公开描述。"
           />
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {tools.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
@@ -54,28 +54,28 @@ export default function ToolsPage() {
           <Surface className="p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">01</p>
             <h2 className="font-display mt-4 text-3xl tracking-[-0.04em] text-[var(--color-foreground)]">
-              按任务分组
+              Agent Skills
             </h2>
             <p className="mt-4 text-base leading-8 text-[var(--color-muted)]">
-              工具分类不该围着平台名字转，而该围着具体任务：研究、写作、开发、自动化、发布。
+              旧站已经把 Agent Skills 做成独立 hub，并公开了场景规模与同步频率，这块内容很适合继续产品化。
             </p>
           </Surface>
           <Surface className="p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">02</p>
             <h2 className="font-display mt-4 text-3xl tracking-[-0.04em] text-[var(--color-foreground)]">
-              写明使用手感
+              Wiki / Daily / Fragments
             </h2>
             <p className="mt-4 text-base leading-8 text-[var(--color-muted)]">
-              光有功能描述没有判断，页面就没有人格。哪怕一句短评，也比复制官网介绍更值钱。
+              这些页面构成了旧站的知识沉淀层：长条目、学习输入和短碎片都各有归宿，现在要做的是让它们在新站更清楚。 
             </p>
           </Surface>
           <Surface className="p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-muted)]">03</p>
             <h2 className="font-display mt-4 text-3xl tracking-[-0.04em] text-[var(--color-foreground)]">
-              保持和博客同气质
+              Links
             </h2>
             <p className="mt-4 text-base leading-8 text-[var(--color-muted)]">
-              当工具页和文章页看起来像一个品牌产物，整个站点的可信度会明显往上抬。
+              友情链接这种页看着小，但它很能体现一个站点的网络关系。迁过来以后，它会比老样式更像一个完整模块。 
             </p>
           </Surface>
         </Container>

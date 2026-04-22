@@ -1,43 +1,61 @@
+import { legacyResources } from "@/content/resources";
 import type { Project } from "@/content/types";
+
+function getResource(slug: string) {
+  const resource = legacyResources.find((item) => item.slug === slug);
+
+  if (!resource) {
+    throw new Error(`Missing legacy resource: ${slug}`);
+  }
+
+  return resource;
+}
+
+const openSource = getResource("open-source");
+const fragments = getResource("fragments");
+const mindmap = getResource("mindmap-viewer");
 
 export const projects: Project[] = [
   {
-    slug: "ybot-atlas",
-    name: "YBOT Atlas",
-    tag: "内容体系",
+    slug: openSource.slug,
+    name: openSource.title,
+    tag: "开源栏目",
     year: "2026",
-    status: "In Progress",
-    summary: "把旧站散落的内容、栏目和入口重新整理成一张清晰的信息地图。",
-    detail:
-      "首页、列表页、详情页都共享统一的视觉骨架，后续只需要替换数据源，不需要再推翻样式层。",
-    outcome: "目标：更稳的内容沉淀，更清楚的品牌路径。",
+    status: "11 GitHub projects",
+    summary:
+      openSource.description || "旧站的开源项目页，集中展示 GitHub 仓库与更新节奏。",
+    detail: openSource.lines.slice(3, 8).join(" · "),
+    outcome: "把仓库列表从旧站风格迁进新站后，可以进一步接项目封面、摘要和外链。",
     href: "/projects",
     featured: true,
+    sourceUrl: openSource.url,
   },
   {
-    slug: "signal-deck",
-    name: "Signal Deck",
-    tag: "品牌表达",
+    slug: fragments.slug,
+    name: fragments.title,
+    tag: "碎片索引",
     year: "2026",
-    status: "Design System",
-    summary: "用更厚重的标题、更开阔的留白和更讲究的模块节奏，抬高整站气场。",
-    detail:
-      "在参考站的极简基础上增加编辑感、深色场景和品牌锚点，让首页更像门面而不是普通博客入口。",
-    outcome: "目标：让 YBOT 一眼有辨识度，而不是像任何一个套皮站。",
-    href: "/about",
+    status: "知识片段归档",
+    summary:
+      fragments.lines[0] || "旧站的碎片页，把零散问题和操作记录聚合成一个索引面。",
+    detail: fragments.lines.slice(2, 7).join(" · "),
+    outcome: "这类短条目后面适合拆成独立短内容流，做成更现代的 fragment archive。",
+    href: "/projects",
     featured: true,
+    sourceUrl: fragments.url,
   },
   {
-    slug: "workflow-forge",
-    name: "Workflow Forge",
-    tag: "实验室",
+    slug: mindmap.slug,
+    name: mindmap.title,
+    tag: "脑图工具",
     year: "2026",
-    status: "Content Ops",
-    summary: "把 AI 工具、自动化和实战工作流放进更适合展示的方法论模板。",
-    detail:
-      "工具页和项目页不是平铺卡片，而是给出适用场景、使用手感和真正值得留下的结论。",
-    outcome: "目标：从资源堆积，升级成可反复引用的工作台。",
-    href: "/tools",
+    status: "全屏查看器",
+    summary:
+      mindmap.description || "旧站已有独立 mindmap viewer 页面，可以作为轻量工具入口。",
+    detail: "当前公开抓到的信息较少，但栏目与功能定位已经明确，可继续补页面内容和视觉表现。",
+    outcome: "适合作为后续产品化小工具入口，纳入新站的栏目展示层。",
+    href: "/projects",
     featured: true,
+    sourceUrl: mindmap.url,
   },
 ];

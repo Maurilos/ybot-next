@@ -1,87 +1,108 @@
+import snapshot from "@/content/legacy-site.snapshot.json";
+import { legacyResources } from "@/content/resources";
 import type { Metric, NavItem, Pillar, Principle, TimelineEntry } from "@/content/types";
+
+const aboutPage = legacyResources.find((resource) => resource.slug === "about");
+
+export const siteProfile = {
+  title: snapshot.site.title,
+  description: snapshot.site.description,
+  heroTagline: snapshot.site.heroTagline,
+  owner: snapshot.site.owner,
+  aboutLines: aboutPage?.lines.slice(0, 5) ?? [],
+  legacySections: snapshot.site.nav
+    .filter((item, index, items) => {
+      const key = `${item.path}-${item.label}`;
+      return (
+        ["首页", "分享", "归档", "碎片", "英语", "维基", "Agent Skills", "链接", "关于"].includes(item.label) &&
+        items.findIndex((candidate) => `${candidate.path}-${candidate.label}` === key) === index
+      );
+    })
+    .slice(0, 9),
+};
 
 export const navigation: NavItem[] = [
   { href: "/", label: "首页" },
-  { href: "/blog", label: "博客" },
-  { href: "/tools", label: "工具" },
-  { href: "/projects", label: "项目" },
+  { href: "/blog", label: "文章" },
+  { href: "/tools", label: "资源" },
+  { href: "/projects", label: "栏目" },
   { href: "/about", label: "关于" },
 ];
 
 export const heroMetrics: Metric[] = [
   {
-    label: "站点定位",
-    value: "内容 × 工具 × 项目",
-    detail: "把博客、资源、实验和品牌表达折进同一套前台模板。",
+    label: "旧站文章",
+    value: `${snapshot.posts.length} 篇`,
+    detail: "已把旧站当前可索引的正式文章清单抓成本地快照，用于静态迁移。",
   },
   {
-    label: "设计目标",
-    value: "更大气、更锋利",
-    detail: "不是复刻参考站，而是借它的秩序感做出更强的压场。",
+    label: "栏目页面",
+    value: `${legacyResources.length} 个`,
+    detail: "About、Wiki、Daily、Fragments、Agent Skills 等页面已经进入迁移素材层。",
   },
   {
-    label: "技术基座",
-    value: "Next 16 / React 19",
-    detail: "用 App Router 做整站模板化，后续直接挂接旧站内容即可。",
+    label: "作者与出处",
+    value: `@${snapshot.site.owner.githubHandle}`,
+    detail: `${snapshot.site.owner.location} · 来自旧站公开页面与搜索索引快照。`,
   },
 ];
 
 export const homePillars: Pillar[] = [
   {
-    eyebrow: "Editorial",
-    title: "博客内容",
+    eyebrow: "Articles",
+    title: "旧站文章",
     description:
-      "长文、教程、复盘与观点统一成编辑感更强的阅读体验，让内容本身站到舞台中央。",
+      "把 ybot.top 当前首页可见的三篇正式文章迁进新模板：两篇 Claude 深度解析，一篇认知主题文章。",
     href: "/blog",
   },
   {
-    eyebrow: "Curation",
-    title: "工具导航",
+    eyebrow: "Resources",
+    title: "资源栏目",
     description:
-      "把 AI 工具、工作流和效率资源收进更清爽的目录系统，不再像杂乱的链接仓库。",
+      "Agent Skills、Wiki、Daily English、Links 等栏目开始进入统一的资源页，不再散落在旧站的不同导航节点里。",
     href: "/tools",
   },
   {
-    eyebrow: "Work",
-    title: "个人项目",
+    eyebrow: "Columns",
+    title: "重点栏目",
     description:
-      "项目页不只罗列功能，而是突出方法、产出和长期积累，让个人品牌更有骨头。",
+      "Open Source、Fragments、Mindmap Viewer 这类更像专题或产品入口的页面，被重新整理进新站的栏目展示层。",
     href: "/projects",
   },
 ];
 
 export const principles: Principle[] = [
   {
-    title: "先做模板系统，再挂真实内容",
+    title: "先抓公开快照，再本地静态化",
     description:
-      "这次优先把视觉层、导航层、列表层和详情层统一，后面替换旧站内容时不会反复返工。",
+      "这次迁移不是运行时去抓旧站，而是把旧站公开内容保存为本地快照，再喂给新模板，保证构建稳定。",
   },
   {
-    title: "参考骨架，不复制表情",
+    title: "模板负责统一表达，内容负责还原身份",
     description:
-      "借参考站的秩序、留白和内容优先逻辑，但把品牌气质做得更厚、更开、更有个人锋芒。",
+      "新站继续保持更大气的视觉系统，但文案、文章标题、栏目说明已经开始回到 YBot Archive 的真实语境。",
   },
   {
-    title: "把阅读体验抬到品牌层级",
+    title: "旧站栏目不丢，新站结构重排",
     description:
-      "文章详情页、栏目列表页和项目页都必须像同一个品牌说话，而不是各做各的。",
+      "旧站有分享、碎片、英语、维基、Agent Skills、链接等栏目，新站会在更清楚的层级里把它们重新组织起来。",
   },
 ];
 
 export const timeline: TimelineEntry[] = [
   {
     year: "01",
-    title: "整理旧站内容资产",
-    description: "先保留原有内容方向，把博客、工具、项目拆分成清晰的信息入口。",
+    title: "抓取旧站公开索引",
+    description: "已经从首页、搜索索引、feed 与关键栏目页生成本地迁移快照。",
   },
   {
     year: "02",
-    title: "建立视觉模板母版",
-    description: "统一 Header、Footer、Hero、列表卡片、详情页正文和 CTA 模块。",
+    title: "映射到新站内容模型",
+    description: "把文章、资源栏目、专题页拆成独立模块，开始替换掉模板示例文案。",
   },
   {
     year: "03",
-    title: "逐页接入真实数据",
-    description: "后续把 ybot.top 的真实内容一批批挂进来，而不是再重做前端皮肤。",
+    title: "逐步扩展更多存量页面",
+    description: "下一步可以继续把 archives、categories 以及更细的 wiki 条目、碎片条目往新结构里扩。",
   },
 ];
